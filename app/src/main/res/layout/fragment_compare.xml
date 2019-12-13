@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.Fragments.CompareFragment">
+
+    <cn.zhouchaoyuan.excelpanel.ExcelPanel
+        android:id="@+id/compare_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:left_cell_width="128dp"
+        app:normal_cell_width="128dp"
+        app:top_cell_height="88dp" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom|end"
+        fab:menu_icon="@drawable/ic_menu_white_24dp"
+        fab:menu_animationDelayPerItem="0"
+        fab:menu_colorNormal="#1A1A1A"
+        fab:menu_colorPressed="#272727"
+        fab:menu_colorRipple="#FFFFFF"
+        fab:menu_labels_maxLines="2"
+        fab:menu_labels_ellipsize="end">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_sweep_white_24dp"
+            fab:fab_label="clean" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabAdd"
+            app:fab_colorNormal="@color/cell_border_color"
+            app:fab_colorPressed="@color/highlight_light"
+            app:fab_colorRipple="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_white_24dp"
+            fab:fab_label="add country" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</FrameLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="128dp"
+    android:layout_height="@dimen/room_status_cell_height">
+
+
+    <ImageView
+        android:id="@+id/flagImg"
+        android:layout_width="26dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_terrain_black_24dp"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/countryNameTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/flagImg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/cell_border_color"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-36dp"
+        tools:layout_editor_absoluteY="-264dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#1565C0</color>
+    <color name="colorAccentDark">#FF5722</color>
+
+    <color name="white_bg">#F0F0FA</color>
+
+    <color name="colorPrimaryText">#050505</color>
+
+    <color name="toolbar">#00796b</color>
+    <color name="progressBarColor">#ad1457</color>
+
+    <color name="total_score">#2E7D32</color>
+    <color name="visa_free">#43A047</color>
+    <color name="visa_required">#EB1D27</color>
+    <color name="visa_on_arrival">#039BE5</color>
+    <color name="eTa">#FFC107</color>
+
+    <color name="visa_free_table">#25752E</color>
+    <color name="visa_required_table">#8A141A</color>
+    <color name="visa_on_arrival_table">#274E9B</color>
+    <color name="eTa_table">#9A7D0A</color>
+
+    <color name="alertDialogDark">#222222</color>
+    <color name="darkCardViewBackground">#3D3D3D</color>
+
+   <color name="highlight_light">#2196F3</color>
+   <color name="cell_border_color">#0D47A1</color>
+
+
+    <color name="red_700">#D32F2F</color>
+
+
+</resources>

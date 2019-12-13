@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "658537754614",
+    "firebase_url": "https://countries-1ca3c.firebaseio.com",
+    "project_id": "countries-1ca3c",
+    "storage_bucket": "countries-1ca3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658537754614:android:1f40d04d36534c9e",
+        "android_client_info": {
+          "package_name": "com.alisasadkovska.passport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658537754614-p3j3d74c5tefg4ekdloqo5l6iov6nlb6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alisasadkovska.passport",
+            "certificate_hash": "98480901610cb58c476869d0077a39e33d920c7c"
+          }
+        },
+        {
+          "client_id": "658537754614-kik91htrpdebnsbbdq5940171dvglg25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPFnvJc0dLyBx_Mnu3mDuNFJLo52mhL2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658537754614-kik91htrpdebnsbbdq5940171dvglg25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

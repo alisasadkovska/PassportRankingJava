@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">Passport Power</string>
+
+    <string name="NAL_googleMap_api_key" translatable="false">AIzaSyBAUEuXV0cF7VeOzwizHbtlC_0sAspwlyM</string>
+
+    <string name="NewsApiKey" translatable="false">092b28ba0f5b4af6aafb5d4821974fe6</string>
+
+    <string name="NAL_admob_api_key" translatable="false">ca-app-pub-1106746240870079~2422982237</string>
+    <string name="NAL_admob_news_item" translatable="false">ca-app-pub-1106746240870079/4163436057</string>
+
+    <string name="version">version 0.8</string>
+    <string name="select_your_country">choose your citizenship</string>
+    <string name="change_your_country">change your citizenship</string>
+    <string name="submit">start</string>
+    <string name="no_internet">no internet connection</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="close">Close</string>
+
+    <string name="location_rationale">Share your location to determine your citizenship</string>
+
+    <string name="action_internet">web</string>
+    <string name="action_share">share</string>
+
+    <string name="search">search…</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_ranking">Ranking</string>
+    <string name="menu_explore">Explore</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_info">About</string>
+    <string name="menu_compare">Compare</string>
+
+    <string name="total">total score</string>
+    <string name="visa_free">visa free</string>
+    <string name="visa_required">visa required</string>
+    <string name="on_arrival">visa on arrival</string>
+    <string name="eTA">eVisa</string>
+
+    <string name="about_app">This application is open source and provided as is. If you find any inaccuracies in database, please contact us</string>
+
+    <string name="dark_mode_on">Dark mode on!</string>
+    <string name="dark_mode_off">Dark mode off!</string>
+    <string name="error_toast">Error :</string>
+    <string name="poor_internet">poor internet connection</string>
+
+    <string name="select_to_compare">choose citizenship to compare</string>
+    <string name="country_exists">already present…</string>
+    <string name="tutorial">Youtube tutorials</string>
+    <string name="action_wikipedia">action_wikipedia</string>
+
+    <string name="continent">Continent</string>
+    <string name="color">Color</string>
+    <string name="industry">Investment</string>
+
+    <string name="red">Red</string>
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+    <string name="black">Black</string>
+
+    <string name="europe">Europe</string>
+    <string name="asia">Asia</string>
+    <string name="africa">Africa</string>
+    <string name="oceania">Oceania</string>
+    <string name="north_america">North America</string>
+    <string name="south_america">South America</string>
+
+    <string name="citizenship">Citizenship by investment</string>
+    <string name="residence">Residency by investment</string>
+
+    <string name="progress">Progress</string>
+    <string name="order_by_biggest">By biggest score</string>
+    <string name="order_by_losers">By lowest score</string>
+    <string name="order_by_biggest_progress">By monthly grow</string>
+    <string name="order_by_biggest_lose">By monthly lose</string>
+
+    <string name="was_added">was added</string>
+    <string name="monthlyProgress">monthly progress</string>
+    <string name="all_countries">All Countries</string>
+    <string name="score">score :</string>
+    <string name="data_removed">all data was removed</string>
+    <string name="nothing_to_remove">no data to remove</string>
+    <string name="lastUpdate">last update:</string>
+
+    <string name="news">News</string>
+    <string name="nfc_passport_scanner">Nfc passport scanner</string>
+    <string name="passport_number">Passport number</string>
+    <string name="expiration_date">Expiration date yyyy/mm/dd</string>
+    <string name="date_of_birth">Date of birth  yyyy/mm/dd</string>
+    <string name="info_scan_passport">Please fill details, place your phone on top of the passport, and press the start button.
+        Following information is required to decode encrypted passport data. \n\n We don\'t store your personal information, and you can check the source code on : <a href="https://github.com/alisasadkovska/199_Countries">Github</a></string>
+    <string name="start">START</string>
+    <string name="numberRequired">Passport number is required</string>
+    <string name="expiration_required">Expiration date is required</string>
+    <string name="birth_date_required">Birth date is required</string>
+    <string name="no_nfc">There is no Nfc on this device</string>
+    <string name="error_input">Please provide details to read passport</string>
+
+    <string name="result_first_name">First name</string>
+    <string name="result_last_name">Last name</string>
+    <string name="result_gender">Gender</string>
+    <string name="result_state">Country</string>
+    <string name="result_nationality">Nationality</string>
+    <string name="enable_nfc">Turn on Nfc on your device</string>
+
+    <string name="put_phone_on_pass">Place your phone on top of the passport</string>
+    <string name="format_expiration">expiration date should be in format: 2030/01/01</string>
+    <string name="format_birthDate">Birth date should be in format: 1980/01/01</string>
+    <string name="retry">Retry</string>
+    <string name="not_found">404 not found</string>
+    <string name="broken_server">500 server broken</string>
+    <string name="unknown_error">unknown error</string>
+    <string name="no_result">No Result</string>
+    <string name="try_again">Please Try Again!</string>
+    <string name="share_from">Share from</string>
+    <string name="share_with">Share with :</string>
+    <string name="share_error">Hmm.. Sorry, \\nCannot be share</string>
+
+    <string name="cheap_flights">cheap flights</string>
+    <string name="ad">Ad</string>
+    <string name="oops">Oops..</string>
+    <string name="network_failure">Network failure, Please Try Again</string>
+</resources>

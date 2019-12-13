@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.Fragments.HomeFragment">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+
+                        <LinearLayout
+                            app:layout_collapseMode="parallax"
+                            app:layout_collapseParallaxMultiplier="1"
+                            android:visibility="gone"
+                            android:id="@+id/headLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            tools:ignore="UselessParent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="8dp">
+
+                                <FrameLayout
+                                    android:id="@+id/frame"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    android:layout_width="88dp"
+                                    android:layout_height="128dp">
+
+                                    <ImageView
+                                        android:id="@+id/passportCover"
+                                        android:scaleType="fitXY"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:contentDescription="@string/app_name"/>
+
+                                    <ProgressBar
+                                        android:id="@+id/coverProgress"
+                                        android:layout_gravity="center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                </FrameLayout>
+
+                                <TextView
+                                    android:id="@+id/name"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:textAlignment="center"
+                                    android:textSize="30sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/frame"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <ProgressBar
+                                android:id="@+id/countryProgress"
+                                style="@style/MyProgressBar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="8dp"
+                                android:max="199" />
+
+                            <LinearLayout
+                                android:layout_margin="8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:divider="@drawable/empty_tall_divider"
+                                android:orientation="vertical"
+                                android:showDividers="middle">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:text="@string/total"
+                                        android:textAlignment="center" />
+
+                                    <TextView
+                                        android:id="@+id/textTotal"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/total_score" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:text="@string/visa_free"
+                                        android:textAlignment="center" />
+
+                                    <TextView
+                                        android:id="@+id/textVisaFree"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/visa_free" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:text="@string/on_arrival"
+                                        android:textAlignment="center" />
+
+                                    <TextView
+                                        android:id="@+id/textVisaOnArrival"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/visa_on_arrival" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:text="@string/eTA"
+                                        android:textAlignment="center" />
+
+                                    <TextView
+                                        android:id="@+id/textEVisa"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/eTa" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:text="@string/visa_required"
+                                        android:textAlignment="center" />
+
+                                    <TextView
+                                        android:id="@+id/textVisaRequired"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/visa_required" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:padding="8dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:visibility="gone"
+                android:id="@+id/action_bar_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</FrameLayout>

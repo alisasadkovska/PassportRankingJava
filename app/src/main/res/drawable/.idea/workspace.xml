@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ef02da3-5143-4b5d-a556-de817b7823b1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../../.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ic_launcher-web.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Model/SpinnerModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/africa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asia.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/europe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loading.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/north_america.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oceania.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/progress_animation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/south_america.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tv.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../layout/spinner_header.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../layout/spinner_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../menu/menu_action_country_detail.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../values/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../google-services.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../androidTest/java/com/lpwoowatpokpt/passportrankingjava/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../androidTest/java/com/alisasadkovska/passport/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/fonts/NanumGothic-Bold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/../../assets/fonts/NanumGothic-Bold.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Adapter/CompareAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Adapter/CompareAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Adapter/CustomFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Adapter/CustomFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Adapter/PassportAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Adapter/PassportAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Common/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Common/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Common/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Common/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Common/CustomWebChromeClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Common/CustomWebChromeClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Common/TinyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Common/TinyDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Common/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Common/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/ExcelModel/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/ExcelModel/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/ExcelModel/ColTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/ExcelModel/ColTitle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/ExcelModel/RowTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/ExcelModel/RowTitle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Maps/ClusterRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Maps/ClusterRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Maps/MarkerItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Maps/MarkerItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Model/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Model/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Model/CountryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Model/CountryModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/Model/Ranking.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/Model/Ranking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/CountryDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/CountryDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/Fragments/CompareFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/Fragments/CompareFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/Fragments/MapFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/Fragments/MapFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/Fragments/RankingFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/Fragments/RankingFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/Fragments/TopFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/Fragments/TopFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/InfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/InfoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/SettingsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/UI/WebViewActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/UI/WebViewActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/lpwoowatpokpt/passportrankingjava/ViewHolder/RankingViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/alisasadkovska/passport/ViewHolder/RankingViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/empty_tall_divider.xml" beforeDir="false" afterPath="$PROJECT_DIR$/empty_tall_divider.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/head.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ic_arrow_drop_down_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ic_arrow_drop_down_blue_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ic_arrow_drop_up_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ic_arrow_drop_up_blue_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/splash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/splash.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wikipedia.png" beforeDir="false" afterPath="$PROJECT_DIR$/wikipedia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/activity_country_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/activity_country_detail.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/activity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/country_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/country_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/country_left_cell.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/country_left_cell.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/country_normal_cell.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/country_normal_cell.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/country_top_cell.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/country_top_cell.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/fragment_compare.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/fragment_compare.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/fragment_ranking.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/fragment_ranking.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/fragment_top.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/fragment_top.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/nav_header_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/nav_header_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/splash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/splash.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/top_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/top_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/../mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../test/java/com/lpwoowatpokpt/passportrankingjava/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../test/java/com/alisasadkovska/passport/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../gradlew.bat" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="27" />
+    <option name="width" value="1365" />
+    <option name="height" value="676" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="drawable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="drawable" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ef02da3-5143-4b5d-a556-de817b7823b1" name="Default Changelist" comment="" />
+      <created>1567358380722</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567358380722</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="27" width="1365" height="676" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.1847988" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Palette&#9;" />
+    </layout>
+  </component>
+</project>
