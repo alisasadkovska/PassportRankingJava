@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Passport Power</string>
 
-    <string name="NAL_googleMap_api_key" translatable="false">AIzaSyBAUEuXV0cF7VeOzwizHbtlC_0sAspwlyM</string>
+    <string name="NAL_googleMap_api_key" translatable="false">your api key</string>
 
-    <string name="NewsApiKey" translatable="false">092b28ba0f5b4af6aafb5d4821974fe6</string>
+    <string name="NewsApiKey" translatable="false">your api key</string>
 
-    <string name="NAL_admob_api_key" translatable="false">ca-app-pub-1106746240870079~2422982237</string>
-    <string name="NAL_admob_news_item" translatable="false">ca-app-pub-1106746240870079/4163436057</string>
+    <string name="NAL_admob_api_key" translatable="false">your api key</string>
+    <string name="NAL_admob_news_item" translatable="false">your api key</string>
 
     <string name="version">version 0.8</string>
     <string name="select_your_country">choose your citizenship</string>
