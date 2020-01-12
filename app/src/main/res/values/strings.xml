@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Passport Power</string>
 
-    <string name="googleMapApiKey" translatable="false">AIzaSyBAUEuXV0cF7VeOzwizHbtlC_0sAspwlyM</string>
-    <string name="adApiKey" translatable="false">ca-app-pub-1106746240870079~2422982237</string>
-    <string name="detailBanner" translatable="false">ca-app-pub-1106746240870079/4504923233</string>
-    <string name="compareBanner" translatable="false">ca-app-pub-1106746240870079/9800362386</string>
-    <string name="homeBanner" translatable="false">ca-app-pub-1106746240870079/3661031308</string>
+    <string name="googleMapApiKey" translatable="false">your api key</string>
+    <string name="adApiKey" translatable="false">your api key</string>
+    <string name="detailBanner" translatable="false">your api key</string>
+    <string name="compareBanner" translatable="false">your api key</string>
+    <string name="homeBanner" translatable="false">your api key</string>
     <string name="testAd" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
 
     <string name="version">version 1.0.1</string>
