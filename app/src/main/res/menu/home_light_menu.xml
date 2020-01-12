@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_filter"
+        android:orderInCategory="200"
+        android:title="@string/menu_info"
+        android:icon="@drawable/ic_more_vert_black_24dp"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/allCountries"
+                android:title="@string/all_countries" />
+            <item
+                android:id="@+id/visaFree"
+                android:title="@string/visa_free" />
+            <item
+                android:id="@+id/visaRequired"
+                android:title="@string/visa_required" />
+            <item
+                android:id="@+id/visaOnArrival"
+                android:title="@string/on_arrival" />
+            <item
+                android:id="@+id/visaEta"
+                android:title="@string/eTA" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:title="@string/search"/>
+</menu>

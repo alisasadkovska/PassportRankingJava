@@ -9,9 +9,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.NFC" />
-
-    <uses-feature android:name="android.hardware.nfc" android:required="true"/>
 
     <application
         android:name=".common.AppController"
@@ -25,26 +22,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.NewsDetailActivity" />
         <activity
-            android:name=".ui.scanner.ScannerActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="com.alisasadkovska.passport.REQUEST" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.scanner.ResultActivity"
+            android:name=".ui.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.scanner.NfcScannerActivity"
+            android:name=".ui.CompareActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.ExploreActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.RankingActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.SettingsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.InfoActivity" />
+        <activity
+            android:name=".ui.CountryDetail"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.MapsActivity"/>
+        <activity android:name=".ui.InfoActivity"/>
+        <activity android:name=".ui.WebViewActivity" />
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait">
@@ -54,22 +51,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.WebViewActivity" />
-        <activity
-            android:name=".ui.CountryDetail"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.Home"
-            android:label="@string/title_activity_home"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/NAL_googleMap_api_key" />
+            android:value="@string/googleMapApiKey"/>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/NAL_admob_api_key" />
+            android:value="@string/adApiKey"/>
     </application>
 
 </manifest>

@@ -1,12 +1,7 @@
 package com.alisasadkovska.passport.ui
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -15,27 +10,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alisasadkovska.passport.Adapter.PassportAdapter
-import com.alisasadkovska.passport.Model.Country
+import com.alisasadkovska.passport.adapter.PassportAdapter
 import com.alisasadkovska.passport.R
 import com.alisasadkovska.passport.common.Common
+import com.alisasadkovska.passport.common.Common.fontPath
 import com.alisasadkovska.passport.common.TinyDB
 import com.alisasadkovska.passport.common.Utils
+import com.alisasadkovska.passport.Model.Country
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.Behavior.DragCallback
-import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Picasso.LoadedFrom
-import com.squareup.picasso.Target
 import es.dmoral.toasty.Toasty
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
@@ -43,14 +34,25 @@ import io.github.inflationx.viewpump.ViewPump
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_country_detail.*
-import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.android.synthetic.main.activity_country_detail.adView
+import kotlinx.android.synthetic.main.activity_country_detail.appbar
+import kotlinx.android.synthetic.main.activity_country_detail.collapsing_toolbar
+import kotlinx.android.synthetic.main.activity_country_detail.recycler
+import kotlinx.android.synthetic.main.activity_country_detail.textEVisa
+import kotlinx.android.synthetic.main.activity_country_detail.textTotal
+import kotlinx.android.synthetic.main.activity_country_detail.textVisaFree
+import kotlinx.android.synthetic.main.activity_country_detail.textVisaOnArrival
+import kotlinx.android.synthetic.main.activity_country_detail.textVisaRequired
+import kotlinx.android.synthetic.main.activity_country_detail.toolbar
 import java.util.*
 
 class CountryDetail : AppCompatActivity() {
-    var tinyDB: TinyDB? = null
-
-    var passportAdapter: PassportAdapter? = null
+    lateinit var tinyDB: TinyDB
     private var menu: Menu? = null
+
+    var queryCountry = ""
+    lateinit var passportAdapter: PassportAdapter
+
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
@@ -61,42 +63,52 @@ class CountryDetail : AppCompatActivity() {
         ViewPump.init(ViewPump.builder()
                 .addInterceptor(CalligraphyInterceptor(
                         CalligraphyConfig.Builder()
-                                .setDefaultFontPath("fonts/Manjari-Regular.ttf")
+                                .setDefaultFontPath(fontPath)
                                 .setFontAttrId(R.attr.fontPath)
                                 .build())).build())
+
+        queryCountry = Common.COUNTRY
+        if (queryCountry=="")
+            goToHomeActivity()
+
         tinyDB = TinyDB(this)
-        Utils.onActivityCreateSetTheme(this, tinyDB!!.getInt(Common.THEME_ID))
-        if (Common.COUNTRY == null) goToHomeActivity()
+        Utils.onActivityCreateSetTheme(this, tinyDB.getInt(Common.THEME_ID))
         setContentView(R.layout.activity_country_detail)
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
         setSupportActionBar(toolbar)
 
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayShowTitleEnabled(true)
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            supportActionBar!!.setDisplayShowHomeEnabled(true)
-        }
+        supportActionBar!!.setDisplayShowTitleEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         val countryFlags = Paper.book().read<ArrayList<String>>(Common.FlagList)
 
-        val appBarLayout = findViewById<AppBarLayout>(R.id.appbar)
+        appbar.addOnOffsetChangedListener(object : AppBarLayout.BaseOnOffsetChangedListener<AppBarLayout>{
 
-        appBarLayout.addOnOffsetChangedListener(object : OnOffsetChangedListener {
-            var isShow = false
             var scrollRange = -1
+
             override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
                 if (scrollRange == -1) {
                     scrollRange = appBarLayout.totalScrollRange
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    isShow = true
+                    collapsing_toolbar.title = queryCountry
+                    adView.visibility = View.VISIBLE
                     showOption()
-                } else if (isShow) {
-                    isShow = false
+                } else  {
+                    collapsing_toolbar.title = " "
+                    adView.visibility = View.GONE
                     hideOption()
                 }
             }
+
         })
-        val params = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+
+
+        val params = appbar.layoutParams as CoordinatorLayout.LayoutParams
         val behavior = AppBarLayout.Behavior()
         behavior.setDragCallback(object : DragCallback() {
             override fun canDrag(appBarLayout: AppBarLayout): Boolean {
@@ -105,9 +117,6 @@ class CountryDetail : AppCompatActivity() {
         })
 
         params.behavior = behavior
-        val ctl = findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
-        ctl.title = Common.COUNTRY
-        ctl.setExpandedTitleColor(resources.getColor(R.color.colorBlack))
 
         mapView.onCreate(savedInstanceState)
         mapView.onResume()
@@ -120,6 +129,7 @@ class CountryDetail : AppCompatActivity() {
         if (Common.isConnectedToInternet(applicationContext)) {
             loadMap()
         } else {
+            fabFlag.visibility = View.GONE
             mapView.visibility = View.GONE
             no_internet.visibility = View.VISIBLE
             mapProgress.visibility = View.GONE
@@ -131,7 +141,10 @@ class CountryDetail : AppCompatActivity() {
         recycler.itemAnimator = DefaultItemAnimator()
         passportAdapter = PassportAdapter(applicationContext, countries, countryFlags)
 
-        fab.setOnClickListener { goToWikipedia() }
+        fab.setOnClickListener {
+            if (Common.isConnectedToInternet(this))
+            goToWikipedia() else  Toasty.warning(this, getString(R.string.no_internet), Toasty.LENGTH_SHORT).show()
+        }
     }
 
     private fun goToHomeActivity() {
@@ -142,51 +155,43 @@ class CountryDetail : AppCompatActivity() {
     private val countries: ArrayList<Country>
         get() {
             val countryList = ArrayList<Country>()
-            val query = Common.getDatabase().getReference(Common.Countries)
-                    .orderByKey().equalTo(Common.COUNTRY)
-            query.addValueEventListener(object : ValueEventListener {
-                @SuppressLint("NewApi")
+            Common.database.getReference(Common.Countries)
+                    .orderByKey().equalTo(queryCountry).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     for (postSnap in dataSnapshot.children) {
-                        val data: Map<String, Long> = (postSnap.value as Map<String,Long>?)!!
+                        val data: Map<String, Long> = (postSnap.value as Map<String,Long>)
                         val treeMap: Map<String, Long> = TreeMap(data)
-                        val status = ArrayList<Long?>()
+                        val status = ArrayList<Long>()
 
                         for ((key, value) in treeMap) {
                             countryList.addAll(setOf(Country(key, value)))
                             status.add(value)
 
-                            val visaFree = Collections.frequency(status, 3.toLong())
-                            val visaOnArrival = Collections.frequency(status, 2.toLong())
-                            val visaEta = Collections.frequency(status, 1.toLong())
-                            val visaRequired = Collections.frequency(status, 0.toLong())
+                            val visaFree = Collections.frequency(status, 3L)
+                            val visaOnArrival = Collections.frequency(status, 2L)
+                            val visaEta = Collections.frequency(status, 1L)
+                            val visaRequired = Collections.frequency(status, 0L)
                             val total = visaFree + visaOnArrival + visaEta
 
-                            textTotal!!.text = total.toString()
-                            textVisaFree!!.text = visaFree.toString()
-                            textEVisa!!.text = visaEta.toString()
-                            textVisaOnArrival!!.text = visaOnArrival.toString()
-                            textVisaRequired!!.text = visaRequired.toString()
-                            recycler!!.adapter = passportAdapter
-                            passportAdapter!!.notifyDataSetChanged()
-                            loading_recycler!!.visibility = View.GONE
+                            textTotal.text = total.toString()
+                            textVisaFree.text = visaFree.toString()
+                            textEVisa.text = visaEta.toString()
+                            textVisaOnArrival.text = visaOnArrival.toString()
+                            textVisaRequired.text = visaRequired.toString()
+                            recycler.adapter = passportAdapter
+                            passportAdapter.notifyDataSetChanged()
+                            loading_recycler.visibility = View.GONE
                         }
                     }
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    loading_recycler!!.visibility = View.GONE
+                    loading_recycler.visibility = View.GONE
                 }
             })
             return countryList
         }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val intent = Intent(this@CountryDetail, Home::class.java)
-        startActivity(intent)
-        finish()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         this.menu = menu
@@ -196,95 +201,78 @@ class CountryDetail : AppCompatActivity() {
     }
 
     private fun hideOption() {
-        val item = menu!!.findItem(R.id.wikipedia)
-        item.isVisible = false
-        fab!!.show()
+        val item = menu?.findItem(R.id.wikipedia)
+        item?.isVisible = false
+        fab.show()
     }
 
     private fun showOption() {
-        val item = menu!!.findItem(R.id.wikipedia)
-        item.isVisible = true
-        fab!!.hide()
+        val item = menu?.findItem(R.id.wikipedia)
+        item?.isVisible = true
+        fab.hide()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == R.id.wikipedia) goToWikipedia()
-        if (item.itemId == android.R.id.home) {
-            val intent = Intent(this@CountryDetail, Home::class.java)
-            startActivity(intent)
-            finish()
+        when(item.itemId){
+            R.id.wikipedia->{
+                if (Common.isConnectedToInternet(this))goToWikipedia()
+                else Toasty.warning(this, getString(R.string.no_internet), Toasty.LENGTH_SHORT).show()
+            }
+            android.R.id.home->{
+                finish()
+            }
         }
+
         return super.onOptionsItemSelected(item)
     }
 
     private fun goToWikipedia() {
         val browserIntent = Intent(this@CountryDetail, WebViewActivity::class.java)
+        browserIntent.putExtra("name", queryCountry)
         startActivity(browserIntent)
     }
 
-
     private fun loadMap(){
-        val mapQuery = Common.getDatabase().getReference(Common.Country_Model)
-                .orderByChild(Common.Name).equalTo(Common.COUNTRY)
-        mapQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+        Common.database.getReference(Common.Country_Model).orderByChild(Common.Name).equalTo(queryCountry)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnap in dataSnapshot.children) {
                     val latitude = postSnap.child("Latitude").value as Double?
                     val longitude = postSnap.child("Longitude").value as Double?
-                    mapView!!.getMapAsync { map: GoogleMap ->
+                    mapView.getMapAsync { map: GoogleMap ->
                         if (latitude != null && longitude != null) {
                             val current = LatLng(latitude, longitude)
                             var scale = 6f
-                            if (Common.bigCountries().contains(Common.COUNTRY)) scale = 3f
+                            if (Common.bigCountries().contains(queryCountry)) scale = 3f
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(current, scale))
-                            mapProgress!!.visibility = View.GONE
-                            val flag = findViewById<FloatingActionButton>(R.id.flag)
-                            val flagPath = postSnap.child(Common.Flag).value as String?
-                            val ab = supportActionBar
-                            Picasso.get().load(flagPath).into(object : Target {
-                                override fun onBitmapLoaded(bitmap: Bitmap, from: LoadedFrom) {
-                                    val drawable: Drawable = BitmapDrawable(resources, bitmap)
-                                    assert(ab != null)
-                                    ab!!.setIcon(drawable)
-                                }
-
-                                override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {}
-                                override fun onPrepareLoad(placeHolderDrawable: Drawable) {}
-                            })
+                            mapProgress.visibility = View.GONE
                             val finalScale = scale
-                            flag.setOnClickListener { map.moveCamera(CameraUpdateFactory.newLatLngZoom(current, finalScale)) }
+                            fabFlag.setOnClickListener { map.moveCamera(CameraUpdateFactory.newLatLngZoom(current, finalScale)) }
                         }
                     }
                 }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                mapProgress!!.visibility = View.GONE
-                Toasty.error(baseContext, getString(R.string.error_toast) + databaseError.message, 5).show()
+                mapProgress.visibility = View.GONE
+                Toasty.error(this@CountryDetail, getString(R.string.error_toast) + databaseError.message, 5).show()
             }
         })
     }
-
-
-
     public override fun onResume() {
         super.onResume()
-        mapView!!.onResume()
+        mapView.onResume()
     }
-
     public override fun onPause() {
         super.onPause()
-        mapView!!.onPause()
+        mapView.onPause()
     }
-
     public override fun onDestroy() {
         super.onDestroy()
-        mapView!!.onDestroy()
+        mapView.onDestroy()
     }
-
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView!!.onLowMemory()
+        mapView.onLowMemory()
     }
 }

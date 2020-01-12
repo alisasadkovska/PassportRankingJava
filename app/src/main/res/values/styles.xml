@@ -11,16 +11,19 @@
         <item name="cardViewStyle">@style/CardViewStyleLight</item>
         <item name="android:itemBackground">@android:color/white</item>
         <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorHint">@android:color/black</item>
         <item name="colorControlNormal">@android:color/black</item>
-        <item name="colorControlHighlight">@color/highlight_light</item>
+        <item name="colorControlHighlight">@android:color/black</item>
+        <item name="searchViewStyle">@style/ActionBarSearchLight</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back_black_24dp</item>
     </style>
 
     <!-- Dark application theme. -->
     <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryDark</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccentDark</item>
-        <item name="android:windowBackground">@android:color/background_dark</item>
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
+        <item name="colorAccent">@color/darkColorAccent</item>
+        <item name="android:windowBackground">@color/backgroundDark</item>
         <item name="android:textViewStyle">@style/Widget.TextView.CustomWhite</item>
         <item name="cardViewStyle">@style/CardViewStyleDark</item>
         <item name="android:itemBackground">@android:color/black</item>
@@ -28,14 +31,43 @@
         <item name="android:textColorHint">@android:color/white</item>
         <item name="colorControlNormal">@android:color/white</item>
         <item name="colorControlHighlight">@color/colorWhite</item>
-       <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogDark</item>
+        <item name="searchViewStyle">@style/ActionBarSearchDark</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back_white_24dp</item>
     </style>
 
-    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/colorAccentDark</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
-        <item name="android:background">@color/alertDialogDark</item>
+    <style name="MaxDialogDark" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">@string/updatingDB</item>
+        <item name="DialogSpotColor">@android:color/holo_orange_dark</item>
+        <item name="DialogSpotCount">4</item>
     </style>
+
+    <style parent="Theme.AppCompat.Light.Dialog.Alert" name="AlertDialogDark">
+    <item name="colorAccent">@color/visa_required</item>
+    <item name="android:textColorPrimary">#FFFFFF</item>
+    <item name="android:background">@color/alertDialogDark</item>
+
+</style>
+
+    <style name="ActionBarSearchDark" parent="android:Widget.Material.SearchView">
+        <item name="searchIcon">@drawable/ic_search_white_24dp</item>
+        <item name="queryBackground">@null</item>
+        <item name="submitBackground">@null</item>
+        <item name="searchHintIcon">@drawable/ic_search_white_24dp</item>
+        <item name="defaultQueryHint">@string/search</item>
+        <item name="closeIcon">@drawable/ic_close_white_24dp</item>
+    </style>
+
+    <style name="ActionBarSearchLight" parent="android:Widget.Material.SearchView">
+        <item name="searchIcon">@drawable/ic_search_black_24dp</item>
+        <item name="queryBackground">@null</item>
+        <item name="submitBackground">@null</item>
+        <item name="searchHintIcon">@drawable/ic_search_black_24dp</item>
+        <item name="defaultQueryHint">@string/search</item>
+        <item name="closeIcon">@drawable/ic_close_black_24dp</item>
+    </style>
+
 
     <style name="CardViewStyleLight" parent="CardView">
         <item name="cardBackgroundColor" tools:ignore="PrivateResource">@color/cardview_light_background</item>
@@ -59,47 +91,11 @@
     </style>
 
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-
-    <style name="MyProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
-        <item name="colorControlActivated">@color/visa_free</item>
-        <item name="colorControlHighlight">@color/visa_on_arrival</item>
-        <item name="android:progressDrawable">@drawable/custom_progressbar_horizontal</item>
-        <item name="android:minWidth">200dp</item>
-    </style>
-
-
     <style name="DialogAnimations.SmileWindow">
         <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_out_top</item>
     </style>
 
 
-    <style name="my_dialog_theme" parent="ThemeOverlay.AppCompat.Dialog">
-        <item name="colorAccent">@color/colorAccent</item>                   <!--header background-->
-        <item name="android:windowBackground">@color/colorPrimary</item>     <!--calendar background-->
-        <item name="android:colorControlActivated">@color/colorAccent</item> <!--selected day-->
-        <item name="android:textColorPrimary">@color/colorPrimaryText</item> <!--days of the month-->
-        <item name="android:textColorSecondary">@color/colorAccent</item>    <!--days of the week-->
-    </style>
-
-    <style name="my_dialog_theme_dark" parent="ThemeOverlay.AppCompat.Dialog">
-        <item name="colorAccent">@color/colorAccentDark</item>                   <!--header background-->
-        <item name="android:windowBackground">@color/darkCardViewBackground</item>     <!--calendar background-->
-        <item name="android:colorControlActivated">@color/colorAccentDark</item> <!--selected day-->
-        <item name="android:textColorPrimary">@android:color/white</item> <!--days of the month-->
-        <item name="android:textColorSecondary">@color/colorAccentDark</item>    <!--days of the week-->
-    </style>
-
-
-
+    <string name="updatingDB">refreshing data…</string>
 </resources>

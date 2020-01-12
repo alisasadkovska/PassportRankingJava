@@ -40,7 +40,7 @@
         <ProgressBar
             android:max="199"
             android:id="@+id/countryProgress"
-            style="@style/MyProgressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

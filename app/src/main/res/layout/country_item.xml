@@ -19,7 +19,7 @@
 
         <ImageView
             android:contentDescription="@string/app_name"
-            android:id="@+id/flag"
+            android:id="@+id/fabFlag"
             android:src="@drawable/ic_terrain_black_24dp"
             android:layout_gravity="center"
             android:layout_width="0dp"

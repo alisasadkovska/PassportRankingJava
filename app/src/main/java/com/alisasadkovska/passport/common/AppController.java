@@ -1,13 +1,10 @@
 package com.alisasadkovska.passport.common;
 
 import android.app.Application;
-
-import com.droidnet.DroidNet;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.spongycastle.jce.provider.BouncyCastleProvider;
-
-import java.security.Security;
+import io.paperdb.Paper;
 
 public class AppController extends Application {
 
@@ -15,13 +12,7 @@ public class AppController extends Application {
     public void onCreate() {
         super.onCreate();
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        DroidNet.init(this);
-        Security.insertProviderAt(new BouncyCastleProvider(), 1);
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        DroidNet.getInstance().removeAllInternetConnectivityChangeListeners();
+        MobileAds.initialize(this);
+        Paper.init(this);
     }
 }
