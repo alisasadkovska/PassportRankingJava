@@ -1,38 +1,30 @@
 package com.alisasadkovska.passport.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
+import com.alisasadkovska.passport.Model.Ranking
 import com.alisasadkovska.passport.R
 import com.alisasadkovska.passport.ViewHolder.TopViewHolder
+import com.alisasadkovska.passport.common.BaseActivity
 import com.alisasadkovska.passport.common.Common
 import com.alisasadkovska.passport.common.Common.database
-import com.alisasadkovska.passport.common.TinyDB
-import com.alisasadkovska.passport.common.Utils
-import com.alisasadkovska.passport.Model.Ranking
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import io.github.inflationx.calligraphy3.CalligraphyConfig
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor
-import io.github.inflationx.viewpump.ViewPump
-import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import kotlinx.android.synthetic.main.activity_ranking.*
 
-class RankingActivity : AppCompatActivity() {
-    private lateinit var tinyDB: TinyDB
-    private var themeId = 0
+class RankingActivity : BaseActivity() {
+
     private lateinit var ranking: DatabaseReference
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: FirebaseRecyclerAdapter<Ranking, TopViewHolder>
@@ -46,22 +38,12 @@ class RankingActivity : AppCompatActivity() {
         const val biggestLosers = "biggestLosers"
     }
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
-    }
+
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(CalligraphyInterceptor(
-                        CalligraphyConfig.Builder()
-                                .setDefaultFontPath(Common.fontPath)
-                                .setFontAttrId(R.attr.fontPath)
-                                .build())).build())
-        tinyDB = TinyDB(this)
-        themeId = tinyDB.getInt(Common.THEME_ID)
-        Utils.onActivityCreateSetTheme(this, themeId)
         setContentView(R.layout.activity_ranking)
+
         toolbar.title = getString(R.string.menu_ranking)
         setSupportActionBar(toolbar)
 

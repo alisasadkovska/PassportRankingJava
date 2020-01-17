@@ -9,16 +9,14 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.alisasadkovska.passport.Maps.ClusterRenderer
 import com.alisasadkovska.passport.Maps.MarkerItem
-import com.alisasadkovska.passport.R
-import com.alisasadkovska.passport.common.Common
-import com.alisasadkovska.passport.common.TinyDB
-import com.alisasadkovska.passport.common.Utils
 import com.alisasadkovska.passport.Model.CountryModel
+import com.alisasadkovska.passport.R
+import com.alisasadkovska.passport.common.BaseActivity
+import com.alisasadkovska.passport.common.Common
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
@@ -29,37 +27,19 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.clustering.ClusterManager
 import es.dmoral.toasty.Toasty
-import io.github.inflationx.calligraphy3.CalligraphyConfig
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor
-import io.github.inflationx.viewpump.ViewPump
-import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_maps.*
 import java.util.*
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
-    lateinit var tinyDB: TinyDB
-    private var themeId = 0
 
     private var country = ArrayList<CountryModel>()
     private var statusList = ArrayList<Long>()
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(CalligraphyInterceptor(
-                        CalligraphyConfig.Builder()
-                                .setDefaultFontPath(Common.fontPath)
-                                .setFontAttrId(R.attr.fontPath)
-                                .build())).build())
-        tinyDB = TinyDB(this)
-        themeId = tinyDB.getInt(Common.THEME_ID)
-        Utils.onActivityCreateSetTheme(this, themeId)
         setContentView(R.layout.activity_maps)
 
         toolbar.title = getString(R.string.menu_map)
@@ -80,13 +60,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun getIcon(status: Long): BitmapDescriptor {
         return when (status) {
             0L -> bitmapDescriptorFromVector(this, R.drawable.ic_vpn_lock_red_24dp)
-            1L -> if (tinyDB.getInt(Common.THEME_ID) == 1)
+            1L -> if (themeId == 1)
                 bitmapDescriptorFromVector(this, R.drawable.ic_important_devices_yellow_24dp)
             else
                 bitmapDescriptorFromVector(this, R.drawable.ic_important_devices_lime_24dp)
             2L -> bitmapDescriptorFromVector(this, R.drawable.ic_flight_land_blue_24dp)
             3L -> bitmapDescriptorFromVector(this, R.drawable.ic_flight_green_24dp)
-            else -> if (tinyDB.getInt(Common.THEME_ID) == 1)
+            else -> if (themeId == 1)
                 bitmapDescriptorFromVector(this, R.drawable.ic_home_white_24dp)
             else
                 bitmapDescriptorFromVector(this, R.drawable.ic_home_black_24dp)

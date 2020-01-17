@@ -32,7 +32,7 @@
         </FrameLayout>
 
         <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            style="@style/MyProgressBar"
             android:id="@+id/countryProgress"
             android:layout_gravity="center"
             android:max="199"

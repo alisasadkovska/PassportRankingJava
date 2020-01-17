@@ -1,111 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root"
-    android:background="@color/alertDialogDark"
-    tools:context=".ui.MainActivity">
-
-    <View
-        android:id="@+id/animate_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitEnd"
-        android:src="@drawable/background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/app_name" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <FrameLayout
-            android:id="@+id/frame"
-            android:layout_width="166dp"
-            android:layout_height="208dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
             <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_width="166dp"
+                android:layout_height="208dp"
                 android:id="@+id/passportCover"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:scaleType="fitCenter"
                 android:contentDescription="@string/app_name" />
 
-            <ProgressBar
-                android:visibility="gone"
-                android:id="@+id/progressBar"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/passportCover"
+            app:layout_constraintEnd_toEndOf="@+id/passportCover"
+            app:layout_constraintStart_toStartOf="@+id/passportCover"
+            app:layout_constraintTop_toTopOf="@+id/passportCover" />
 
-        </FrameLayout>
 
 
-        <com.dx.dxloadingbutton.lib.LoadingButton
+        <Button
+            style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/addBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:text="@string/select_your_country"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lb_btnRippleColor="@color/colorAccent"
-            app:lb_btnText="@string/select_your_country"
-            app:lb_resetAfterFailed="true"
-            app:lb_rippleEnable="true" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.dx.dxloadingbutton.lib.LoadingButton
+        <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:enabled="false"
             android:id="@+id/submitBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
+            android:text="@string/submit"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addBtn"
-            app:lb_btnRippleColor="@color/colorAccent"
-            app:lb_btnText="@string/submit"
-            app:lb_resetAfterFailed="true"
-            app:lb_rippleEnable="true" />
+            app:layout_constraintTop_toBottomOf="@+id/addBtn" />
 
         <TextView
-            android:id="@+id/countryName"
+            android:id="@+id/countryNameText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:textAlignment="center"
-            android:textColor="@android:color/white"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frame" />
+            app:layout_constraintTop_toBottomOf="@+id/passportCover" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progressSplash"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>

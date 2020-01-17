@@ -27,7 +27,6 @@ object Common {
     const val THEME_ID = "theme_id"
 
     //paperDB
-    const val Cache = "Cache"
     const val CountryModel = "CountryModel"
     const val CountryName = "CountryName"
     const val Cover = "Cover"
@@ -38,15 +37,6 @@ object Common {
     const val CountryList = "CountryList"
     const val FlagList = "FlagList"
     const val fontPath = "fonts/Manjari-Regular.ttf"
-
-    const val visaFree = "visaFree"
-    const val visaRequired = "visaRequired"
-    const val visaOnArrival = "visaOnArrival"
-    const val eVisa = "eVisa"
-
-
-    //big fat
-
 
 
     fun bigCountries(): List<String> {
@@ -62,6 +52,7 @@ object Common {
         big.add("Chile")
         big.add("Peru")
         big.add("Kazakhstan")
+        big.add("Ukraine")
         return big
     }
 

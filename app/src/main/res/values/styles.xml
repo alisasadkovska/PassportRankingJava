@@ -36,12 +36,14 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back_white_24dp</item>
     </style>
 
-    <style name="MaxDialogDark" parent="android:Theme.DeviceDefault.Dialog">
-        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">@string/updatingDB</item>
-        <item name="DialogSpotColor">@android:color/holo_orange_dark</item>
-        <item name="DialogSpotCount">4</item>
+    <style name="MyProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorControlActivated">@color/visa_free</item>
+        <item name="colorControlHighlight">@color/visa_on_arrival</item>
+        <item name="android:progressDrawable">@drawable/custom_progressbar_horizontal</item>
+        <item name="android:minWidth">200dp</item>
     </style>
+
+
 
     <style parent="Theme.AppCompat.Light.Dialog.Alert" name="AlertDialogDark">
     <item name="colorAccent">@color/visa_required</item>
@@ -90,12 +92,4 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
-
-    <style name="DialogAnimations.SmileWindow">
-        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
-        <item name="android:windowExitAnimation">@anim/slide_out_top</item>
-    </style>
-
-
-    <string name="updatingDB">refreshing data…</string>
 </resources>

@@ -50,6 +50,14 @@ public class WebViewActivity extends AppCompatActivity implements CustomWebChrom
         toolbar.setTitleTextColor(ContextCompat.getColor(this,android.R.color.black));
         Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(android.R.color.black), PorterDuff.Mode.SRC_ATOP);
 
+
+
+       if (country!=null){
+           if (country.contains(" "))
+               country = country.replace(" ", "_");
+       }
+
+
         path = Common.WIKIPEDIA+country;
 
         WebView mWebView = this.findViewById(R.id.webView);

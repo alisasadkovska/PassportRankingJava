@@ -1,6 +1,5 @@
 package com.alisasadkovska.passport.ui
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -10,14 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alisasadkovska.passport.adapter.PassportAdapter
-import com.alisasadkovska.passport.R
-import com.alisasadkovska.passport.common.Common
-import com.alisasadkovska.passport.common.Common.fontPath
-import com.alisasadkovska.passport.common.TinyDB
-import com.alisasadkovska.passport.common.Utils
 import com.alisasadkovska.passport.Model.Country
-import com.google.android.gms.ads.AdRequest
+import com.alisasadkovska.passport.R
+import com.alisasadkovska.passport.adapter.PassportAdapter
+import com.alisasadkovska.passport.common.BaseActivity
+import com.alisasadkovska.passport.common.Common
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
@@ -28,55 +24,24 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import es.dmoral.toasty.Toasty
-import io.github.inflationx.calligraphy3.CalligraphyConfig
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor
-import io.github.inflationx.viewpump.ViewPump
-import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_country_detail.*
-import kotlinx.android.synthetic.main.activity_country_detail.adView
-import kotlinx.android.synthetic.main.activity_country_detail.appbar
-import kotlinx.android.synthetic.main.activity_country_detail.collapsing_toolbar
-import kotlinx.android.synthetic.main.activity_country_detail.recycler
-import kotlinx.android.synthetic.main.activity_country_detail.textEVisa
-import kotlinx.android.synthetic.main.activity_country_detail.textTotal
-import kotlinx.android.synthetic.main.activity_country_detail.textVisaFree
-import kotlinx.android.synthetic.main.activity_country_detail.textVisaOnArrival
-import kotlinx.android.synthetic.main.activity_country_detail.textVisaRequired
-import kotlinx.android.synthetic.main.activity_country_detail.toolbar
 import java.util.*
 
-class CountryDetail : AppCompatActivity() {
-    lateinit var tinyDB: TinyDB
+class CountryDetail : BaseActivity() {
     private var menu: Menu? = null
 
     var queryCountry = ""
     lateinit var passportAdapter: PassportAdapter
 
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(CalligraphyInterceptor(
-                        CalligraphyConfig.Builder()
-                                .setDefaultFontPath(fontPath)
-                                .setFontAttrId(R.attr.fontPath)
-                                .build())).build())
+        setContentView(R.layout.activity_country_detail)
 
         queryCountry = Common.COUNTRY
         if (queryCountry=="")
             goToHomeActivity()
-
-        tinyDB = TinyDB(this)
-        Utils.onActivityCreateSetTheme(this, tinyDB.getInt(Common.THEME_ID))
-        setContentView(R.layout.activity_country_detail)
-
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
 
         setSupportActionBar(toolbar)
 
@@ -96,11 +61,9 @@ class CountryDetail : AppCompatActivity() {
                 }
                 if (scrollRange + verticalOffset == 0) {
                     collapsing_toolbar.title = queryCountry
-                    adView.visibility = View.VISIBLE
                     showOption()
                 } else  {
                     collapsing_toolbar.title = " "
-                    adView.visibility = View.GONE
                     hideOption()
                 }
             }
@@ -159,13 +122,13 @@ class CountryDetail : AppCompatActivity() {
                     .orderByKey().equalTo(queryCountry).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     for (postSnap in dataSnapshot.children) {
-                        val data: Map<String, Long> = (postSnap.value as Map<String,Long>)
-                        val treeMap: Map<String, Long> = TreeMap(data)
+
+                        val treeMap = TreeMap<String, Long>(postSnap.value as Map<String, Long>)
                         val status = ArrayList<Long>()
 
-                        for ((key, value) in treeMap) {
-                            countryList.addAll(setOf(Country(key, value)))
-                            status.add(value)
+                        for (entry in treeMap.entries) {
+                            countryList.addAll(setOf(Country(entry.key, entry.value)))
+                            status.add(entry.value)
 
                             val visaFree = Collections.frequency(status, 3L)
                             val visaOnArrival = Collections.frequency(status, 2L)
@@ -186,6 +149,7 @@ class CountryDetail : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
+                    Toasty.error(this@CountryDetail, databaseError.message, Toasty.LENGTH_SHORT).show()
                     loading_recycler.visibility = View.GONE
                 }
             })

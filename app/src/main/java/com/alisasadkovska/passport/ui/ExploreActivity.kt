@@ -23,6 +23,7 @@ import com.alisasadkovska.passport.common.TinyDB
 import com.alisasadkovska.passport.common.Utils
 import com.alisasadkovska.passport.Model.Ranking
 import com.alisasadkovska.passport.Model.SpinnerModel
+import com.alisasadkovska.passport.common.BaseActivity
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
@@ -37,33 +38,17 @@ import kotlinx.android.synthetic.main.activity_ranking.progressBar
 import kotlinx.android.synthetic.main.activity_ranking.recycler
 import kotlinx.android.synthetic.main.activity_ranking.toolbar
 
-class ExploreActivity : AppCompatActivity() {
+class ExploreActivity : BaseActivity() {
     private var spinnerModels:ArrayList<SpinnerModel> = ArrayList()
     private lateinit var spinnerAdapter: ArrayAdapter<SpinnerModel>
-
-    var themeId = 0
-    private lateinit var tinyDB: TinyDB
-
 
     private lateinit var ranking: DatabaseReference
     private var filteredAdapter: FirebaseRecyclerAdapter<Ranking, ExploreViewHolder> ?=null
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(CalligraphyInterceptor(
-                        CalligraphyConfig.Builder()
-                                .setDefaultFontPath(Common.fontPath)
-                                .setFontAttrId(R.attr.fontPath)
-                                .build())).build())
-
-        tinyDB = TinyDB(this)
-        themeId = tinyDB.getInt(Common.THEME_ID)
-        Utils.onActivityCreateSetTheme(this, themeId)
         setContentView(R.layout.activity_explore)
 
         toolbar.title = getString(R.string.menu_explore)

@@ -4,6 +4,8 @@
     android:layout_height="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:visibility="invisible"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
@@ -13,6 +15,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -29,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?attr/actionBarSize"
                     app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.5">
+                    app:layout_collapseParallaxMultiplier="1">
 
                     <FrameLayout
                         android:id="@+id/frame"
@@ -72,16 +75,16 @@
 
                     <ProgressBar
                         android:id="@+id/progressCountry"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="0dp"
+                        style="@style/MyProgressBar"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_margin="8dp"
                         android:max="199"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/frame" />
+
+
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -250,6 +253,14 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+    <ProgressBar
+        android:id="@+id/progressLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

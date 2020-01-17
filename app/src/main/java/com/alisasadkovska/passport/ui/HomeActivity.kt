@@ -1,36 +1,33 @@
 package com.alisasadkovska.passport.ui
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alisasadkovska.passport.Model.Country
 import com.alisasadkovska.passport.R
 import com.alisasadkovska.passport.adapter.MenuAdapter
 import com.alisasadkovska.passport.adapter.PassportAdapter
+import com.alisasadkovska.passport.common.BaseActivity
 import com.alisasadkovska.passport.common.Common
-import com.alisasadkovska.passport.common.Common.Cache
+import com.alisasadkovska.passport.common.Common.StatusList
 import com.alisasadkovska.passport.common.TinyDB
 import com.alisasadkovska.passport.common.Utils
-import com.alisasadkovska.passport.Model.Country
-import com.alisasadkovska.passport.Model.CountryModel
-import com.alisasadkovska.passport.common.Common.database
 import com.alisasadkovska.passport.menu.Menu
 import com.google.android.gms.ads.AdRequest
 import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -41,17 +38,17 @@ import io.github.inflationx.viewpump.ViewPump
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_home.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
     private var countryName = ""
     private var passportCoverUrl = ""
 
     private var countryFlags = ArrayList<String>()
+    private var countries: DatabaseReference?= null
     private var visaList:MutableList<Country> = ArrayList()
     private lateinit var passportAdapter: PassportAdapter
-
-    private var themeId = 0
-    private lateinit var tinyDB: TinyDB
 
     private var activeFilter = ALL
 
@@ -68,43 +65,25 @@ class HomeActivity : AppCompatActivity() {
         const val ARRIVAL = "arrival"
     }
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(CalligraphyInterceptor(
-                        CalligraphyConfig.Builder()
-                                .setDefaultFontPath(Common.fontPath)
-                                .setFontAttrId(R.attr.fontPath)
-                                .build())).build())
-
-        tinyDB = TinyDB(this)
-        themeId = tinyDB.getInt(Common.THEME_ID)
-        Utils.onActivityCreateSetTheme(this, themeId)
         setContentView(R.layout.activity_home)
 
-         if (Paper.book().contains(Common.CountryName)){
-             countryName = Paper.book().read(Common.CountryName)
-         }
-        else{
-             goToSplash()
-         }
+        if (Paper.book().contains(Common.CountryName))
+            countryName = Paper.book().read(Common.CountryName)
+        else goToSplash()
 
+        countries = Common.database.getReference(Common.Countries)
+        countries!!.keepSynced(true)
+        visaList = getCountries()
+
+        assignMenu()
 
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
 
-        if (ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Common.RequestCameraPermissionId)
-        }
-
         setSupportActionBar(toolbar)
-
         appbar.addOnOffsetChangedListener(object : AppBarLayout.BaseOnOffsetChangedListener<AppBarLayout>{
 
             var scrollRange = -1
@@ -126,11 +105,56 @@ class HomeActivity : AppCompatActivity() {
 
         })
 
-        updateCountryModel()
-        assignMenu()
-        if (Paper.book().contains(Cache))
-        assignUI() else goToSplash()
+        assignUI()
         loadData()
+    }
+
+    private fun getCountries(): MutableList<Country> {
+        val countryList = java.util.ArrayList<Country>()
+        val query = countries!!.orderByKey().equalTo(countryName)
+
+        query.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onCancelled(databaseError: DatabaseError) {
+                Toasty.error(this@HomeActivity, databaseError.message, Toasty.LENGTH_SHORT).show()
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (postSnap in dataSnapshot.children){
+                    val treeMap = TreeMap<String, Long>(postSnap.value as Map<String, Long>)
+                    val status = java.util.ArrayList<Long>()
+
+                    for (entry in treeMap.entries){
+                        countryList.addAll(setOf(Country(entry.key, entry.value)))
+                        status.add(entry.value)
+                        Paper.book().write(StatusList, status)
+
+                        val visaFree = Collections.frequency(status, 3.toLong())
+                        val visaEta = Collections.frequency(status, 1.toLong())
+                        val visaOnArrival = Collections.frequency(status, 2.toLong())
+                        val visaRequired = Collections.frequency(status, 0.toLong())
+                        val total = visaFree + visaOnArrival + visaEta
+
+                        Paper.book().write(Common.MobilityScore, total)
+
+                        textTotal.text = total.toString()
+                        textEVisa.text = visaEta.toString()
+                        textVisaOnArrival.text = visaOnArrival.toString()
+                        textVisaRequired.text = visaRequired.toString()
+                        textVisaFree.text = visaFree.toString()
+
+                        progressCountry.progress = visaOnArrival
+                        progressCountry.secondaryProgress = total
+
+                        passportAdapter.notifyDataSetChanged()
+                        coordinator.visibility = View.VISIBLE
+                        progressLoad.visibility = View.GONE
+                    }
+                }
+            }
+
+        })
+
+        return countryList
     }
 
     private fun goToSplash() {
@@ -139,41 +163,9 @@ class HomeActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun updateCountryModel() {
-        val countryModel: MutableList<CountryModel> = ArrayList()
-        val countryNames = ArrayList<String>()
-        val countryFlags = ArrayList<String>()
-
-        database.getReference(Common.Country_Model).addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onCancelled(error: DatabaseError) {
-                Toasty.error(this@HomeActivity, error.message, Toasty.LENGTH_SHORT).show()
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (postSnap in dataSnapshot.children){
-                    val model: CountryModel? = postSnap.getValue(CountryModel::class.java)
-                    if (model != null) {
-                        countryModel.add(model)
-                        Paper.book().write(Common.CountryModel, countryModel)
-                        val countryNamesData = postSnap.child(Common.Name).getValue(String::class.java)
-                        if (countryNamesData != null) {
-                            countryNames.add(countryNamesData)
-                        }
-                        Paper.book().write(Common.CountryList, countryNames)
-                        val countryFlagsData = postSnap.child(Common.Flag).getValue(String::class.java)
-                        if (countryFlagsData != null) {
-                            countryFlags.add(countryFlagsData)
-                        }
-                        Paper.book().write(Common.FlagList, countryFlags)
-                    }
-                }
-            }
-
-        })
-    }
 
     private fun assignUI(){
-        visaList = Paper.book().read(Cache)
+        //visaList = Paper.book().read(Cache)
         passportCoverUrl = Paper.book().read(Common.Cover)
         countryFlags = Paper.book().read(Common.FlagList)
 
@@ -188,28 +180,13 @@ class HomeActivity : AppCompatActivity() {
                         .into(passportCover)
             } })
 
-        passportCover.setOnClickListener { scaleCoverImage(passportCoverUrl, countryName) }
+        passportCover.setOnClickListener {
+            scaleCoverImage(passportCoverUrl, countryName) }
 
         recycler.setHasFixedSize(true)
         recycler.itemAnimator = DefaultItemAnimator()
         val linearLayoutManager = LinearLayoutManager(this)
         recycler.layoutManager = linearLayoutManager
-
-        val total:Int = Paper.book().read(Common.MobilityScore)
-        val visaFree:Int = Paper.book().read(Common.visaFree)
-        val eVisa:Int = Paper.book().read(Common.eVisa)
-        val visaOnArrival: Int = Paper.book().read<Int>(Common.visaOnArrival)
-        val visaRequired:Int = Paper.book().read(Common.visaRequired)
-
-        progressCountry.progress = visaOnArrival
-        progressCountry.secondaryProgress = total
-
-        textTotal.text = total.toString()
-        textVisaFree.text = visaFree.toString()
-        textVisaOnArrival.text = visaOnArrival.toString()
-        textEVisa.text = eVisa.toString()
-        textVisaRequired.text = visaRequired.toString()
-
 
     }
 

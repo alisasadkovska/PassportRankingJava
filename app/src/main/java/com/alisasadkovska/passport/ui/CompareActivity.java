@@ -1,29 +1,23 @@
 package com.alisasadkovska.passport.ui;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.alisasadkovska.passport.ExcelModel.Cell;
 import com.alisasadkovska.passport.ExcelModel.ColTitle;
 import com.alisasadkovska.passport.ExcelModel.RowTitle;
-import com.alisasadkovska.passport.R;
-import com.alisasadkovska.passport.adapter.CompareAdapter;
-import com.alisasadkovska.passport.common.Common;
-import com.alisasadkovska.passport.common.TinyDB;
-import com.alisasadkovska.passport.common.Utils;
 import com.alisasadkovska.passport.Model.CountryModel;
 import com.alisasadkovska.passport.Model.Ranking;
+import com.alisasadkovska.passport.R;
+import com.alisasadkovska.passport.adapter.CompareAdapter;
+import com.alisasadkovska.passport.common.BaseActivity;
+import com.alisasadkovska.passport.common.Common;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,17 +33,10 @@ import java.util.TreeMap;
 import cn.zhouchaoyuan.excelpanel.ExcelPanel;
 import es.dmoral.toasty.Toasty;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
-import io.github.inflationx.calligraphy3.CalligraphyConfig;
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
-import io.github.inflationx.viewpump.ViewPump;
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import io.paperdb.Paper;
 
-public class CompareActivity extends AppCompatActivity {
+public class CompareActivity extends BaseActivity {
 
-    TinyDB tinyDB;
-
-    private AdView adView;
     private FloatingActionMenu floatingActionMenu;
 
     private int ROW_SIZE;
@@ -72,28 +59,11 @@ public class CompareActivity extends AppCompatActivity {
     private List<RowTitle> rowTitles;
     private List<List<Cell>> cells;
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder()
-                                .setDefaultFontPath(Common.fontPath)
-                                .setFontAttrId(R.attr.fontPath)
-                                .build())).build());
-
-        tinyDB = new TinyDB(this);
-        Utils.onActivityCreateSetTheme(this, tinyDB.getInt(Common.THEME_ID));
         setContentView(R.layout.activity_compare);
-
-        adView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.menu_compare));
@@ -108,6 +78,7 @@ public class CompareActivity extends AppCompatActivity {
 
         country = Paper.book().read(Common.CountryModel);
         ROW_SIZE = country.size();
+
 
         countryName = Paper.book().read(Common.CountryName);
         countryList = Paper.book().read(Common.CountryList);
@@ -139,6 +110,8 @@ public class CompareActivity extends AppCompatActivity {
         fabDelete.setOnClickListener(view -> clearList());
     }
 
+
+
     private void initData(){
         rowTitles = generateRowData();
         cells = genCellData();
@@ -151,11 +124,9 @@ public class CompareActivity extends AppCompatActivity {
             super.onScrolled(excelPanel, dx, dy);
             if (dy > 0){
                 floatingActionMenu.hideMenu(true);
-                adView.setVisibility(View.VISIBLE);
             }
             else if (dy < 0){
                 floatingActionMenu.showMenu(true);
-                adView.setVisibility(View.GONE);
             }
 
             if (dx > 0)
@@ -166,15 +137,15 @@ public class CompareActivity extends AppCompatActivity {
     };
 
     private void showSpinner(){
-        spinnerDialog = new SpinnerDialog(this, Paper.book().read(Common.CountryList), getString(R.string.select_to_compare), R.style.DialogAnimations_SmileWindow, getString(R.string.close));
+        spinnerDialog = new SpinnerDialog(this, Paper.book().read(Common.CountryList), getString(R.string.select_to_compare), getString(R.string.close));
 
-        spinnerDialog.setCancellable(true);
+        spinnerDialog.setCancellable(false);
         spinnerDialog.setShowKeyboard(false);
 
 
-        spinnerDialog.setTitleColor(getResources().getColor(R.color.colorAccent));
-        spinnerDialog.setTitleColor(getResources().getColor(R.color.colorPrimaryText));
+        spinnerDialog.setTitleColor(getResources().getColor(R.color.darkColorPrimaryDark));
         spinnerDialog.setCloseColor(getResources().getColor(R.color.visa_required));
+        spinnerDialog.setItemColor(getResources().getColor(R.color.visa_on_arrival_table));
 
         spinnerDialog.bindOnSpinerListener((s, pos) -> {
 
