@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Passport Power</string>
 
-    <string name="googleMapApiKey" translatable="false">AIzaSyBAUEuXV0cF7VeOzwizHbtlC_0sAspwlyM</string>
-    <string name="adApiKey" translatable="false">ca-app-pub-1106746240870079~2422982237</string>
-    <string name="homeBanner" translatable="false">ca-app-pub-1106746240870079/3661031308</string>
+    <string name="googleMapApiKey" translatable="false">api key</string>
+    <string name="adApiKey" translatable="false">api key</string>
+    <string name="homeBanner" translatable="false">api key</string>
 
     <string name="version">version 1.0.3</string>
     <string name="select_your_country">choose your citizenship</string>
